@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="venta.css">
+    <title>REGISTRO VENTA</title>
+</head>
+<body>
+    <div class="container">
+        <center><div class="title">¡VENTA!</div></center>
+        <form id="form-validation" action="guardar_ventas.php" method="post">
+            <div class="form-group">
+                <span>CODIGO</span>
+                <select id="codigo_menu" name="codigo_menu" required>
+                    <option value="">Selecciona un producto</option>
+                    <option value="D000">D000 Desayuno </option>
+                    <option value="D001">D001 $45 Huevos con jamon</option>
+                    <option value="D002">D002 $25 Pancakes</option>
+                    <option value="D003">D003 $45 crepas o hotcackes</option>
+                    <option value="D004">D004 $20 cafe</option>
+                    <option value="C000">C000 Comida</option>
+                    <option value="C001">C001 $60 pollo ala parrilla</option>
+                    <option value="C002">C002 $25 pozole</option>
+                    <option value="C003">C003 $100 Barbacoa</option>
+                    <option value="C004">C004 $250 mariscos</option>
+                    <option value="B000">B000 Bebida</option>
+                    <option value="B001">B001 $150 vino</option>
+                    <option value="B002">B002 $25 Refrescos</option>
+                    <option value="B003">B003 $20 agua de jamaica</option>
+                    <option value="B004">B004 $25 Cerveza</option>
+                    <option value="P000">P000 Postre</option>
+                    <option value="P001">P001 $30 rebanadas de pastel</option>
+                    <option value="P002">P002 $40 Helado</option>
+                    <option value="P003">P003 $25 flan</option>
+                    <option value="P004">P004 $35 Dulces tradicionales</option>
+                </select>
+                <small class="error-msg" data-validate-for="codigo_menu">Completa este campo</small>
+            </div>
+            <div class="form-group">
+                <span>USUARIO</span>
+                <input type="text" id="usuario_id" name="usuario_id" placeholder="Ingresa tu usuario" required>
+                <small class="error-msg" data-validate-for="usuario_id">Completa este campo</small>
+            </div>
+            
+            <div class="form-group">
+                <span>TOTAL</span>
+                <input type="number" id="total" name="total" placeholder="Ingresa el total" required>
+                <small class="error-msg" data-validate-for="total">Completa este campo</small>
+            </div>
+        
+            <div class="button">
+                <button type="button" onclick="window.location.href='http://localhost:8080/almatlaxiaco/bienvenida.php'">REGRESAR</button>
+                <input type="submit" value="GUARDAR">
+            </div>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('form-validation');
+
+        form.addEventListener('submit', function(event) {
+            const codigoMenuInput = document.getElementById('codigo_menu');
+          
+
+            const codigoMenuValue = codigoMenuInput.value.trim();
+          
+
+            // Validar que CODIGO MENU sea seleccionado
+            if (codigoMenuValue === "") {
+                displayErrorMessage(codigoMenuInput, 'Completa este campo');
+                return;
+            } else {
+                hideErrorMessage(codigoMenuInput);
+            }
+
+           
+
+            // Si pasa todas las validaciones, se podría enviar el formulario
+            console.log('Formulario válido, se puede enviar');
+            // form.submit(); // Descomentar esta línea para enviar el formulario automáticamente
+        });
+
+        // Función para mostrar mensaje de error
+        function displayErrorMessage(inputElement, message) {
+            const errorElement = inputElement.nextElementSibling; // Obtener el elemento pequeño con clase 'error-msg'
+            errorElement.textContent = message;
+            errorElement.style.display = 'block'; // Mostrar el mensaje de error
+        }
+
+        // Función para ocultar mensaje de error
+        function hideErrorMessage(inputElement) {
+            const errorElement = inputElement.nextElementSibling; // Obtener el elemento pequeño con clase 'error-msg'
+            errorElement.style.display = 'none'; // Ocultar el mensaje de error
+        }
+    </script>
+</body>
+</html>
